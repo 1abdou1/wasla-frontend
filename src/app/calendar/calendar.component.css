@@ -1,0 +1,20 @@
+.example-form {
+  min-width: 40% !important;
+  max-width: 40% !important;
+  width: 40%;
+}
+
+.example-full-width {
+  width: 100%;
+}
+.search-bar {
+  /* margin-bottom: -60px !important; */
+  display: flex !important;
+  text-align: center !important;
+  justify-content: center !important;
+  align-items: center !important;
+}
+
+.fc .fc-button-primary {
+  background-color: #edeef0 !important;
+}

@@ -1,0 +1,36 @@
+<mat-dialog-content class="mat-typography">
+  <h1 class="title">Ajoutez une alerte</h1>
+  <mat-dialog-content>
+    <div class="row">
+      <div class="col">
+        <div class="row">
+          <div class="col">
+            <app-form
+              [name]="'Aeroport de depart'"
+              [placeholder]="'Tapez...'"
+            ></app-form>
+          </div>
+
+          <div class="col">
+            <app-form
+              [name]="'Aeroport de arrivee'"
+              [placeholder]="'Tapez...'"
+            ></app-form>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-6">
+            <app-date-picker [date]="'Date depart'"></app-date-picker>
+          </div>
+          <div class="col-6">
+            <app-date-picker [date]="'Date arrivee'"></app-date-picker>
+          </div>
+        </div>
+      </div>
+    </div>
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>Cancel</button>
+    <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Ok</button>
+  </mat-dialog-actions>
+</mat-dialog-content>
