@@ -1,51 +1,81 @@
 <mat-dialog-content class="mat-typography">
   <h1 class="title">Ajoutez un voyage</h1>
-  <mat-dialog-content>
-    <div class="row">
-      <div class="col-6">
-        <app-form
-          [name]="'Type de voyage'"
-          [placeholder]="'Tapez...'"
-        ></app-form>
-        <div class="row">
-          <div class="col">
-            <app-form
-              [name]="'Aeroport de depart'"
-              [placeholder]="'Tapez...'"
-            ></app-form>
-          </div>
+  <form [formGroup]="travelForm" (ngSubmit)="submitTravel()">
+    <mat-dialog-content>
+      <div class="row">
+        <div class="col">
+          <div class="row">
+            <div class="col">
+              <mat-form-field class="example-full-width">
+                <mat-label>Aéroport de depart</mat-label>
+                <input
+                  type="text"
+                  matInput
+                  placeholder="Tapez..."
+                  formControlName="departureAirport"
+                />
+              </mat-form-field>
+            </div>
 
-          <div class="col">
-            <app-form
-              [name]="'Aeroport de arrivee'"
-              [placeholder]="'Tapez...'"
-            ></app-form>
+            <div class="col">
+              <mat-form-field class="example-full-width">
+                <mat-label>Aéroport d'arrivée</mat-label>
+                <input
+                  type="text"
+                  matInput
+                  placeholder="Tapez..."
+                  formControlName="arrivalAirport"
+                />
+              </mat-form-field>
+            </div>
           </div>
-        </div>
-        <div class="row">
-          <div class="col-6">
-            <app-date-picker [date]="'Date depart'"></app-date-picker>
-          </div>
-          <div class="col-6">
-            <app-date-picker [date]="'Date arrivee'"></app-date-picker>
+          <div class="row">
+            <div class="col-6">
+              <mat-form-field class="example-full-width">
+                <mat-label>Date de départ</mat-label>
+                <input
+                  matInput
+                  [matDatepicker]="picker_departure"
+                  formControlName="departureDate"
+                />
+                <mat-hint>MM/DD/YYYY</mat-hint>
+                <mat-datepicker-toggle
+                  matIconSuffix
+                  [for]="picker_departure"
+                ></mat-datepicker-toggle>
+                <mat-datepicker #picker_departure></mat-datepicker>
+              </mat-form-field>
+            </div>
+            <div class="col-6">
+              <mat-form-field class="example-full-width">
+                <mat-label> Date d'arrivée</mat-label>
+                <input
+                  matInput
+                  [matDatepicker]="picker_arrival"
+                  formControlName="arrivalDate"
+                />
+                <mat-hint>MM/DD/YYYY</mat-hint>
+                <mat-datepicker-toggle
+                  matIconSuffix
+                  [for]="picker_arrival"
+                ></mat-datepicker-toggle>
+                <mat-datepicker #picker_arrival></mat-datepicker>
+              </mat-form-field>
+            </div>
           </div>
         </div>
       </div>
-      <div class="col-6">
-        <app-form
-          [name]="'Type de colis'"
-          [placeholder]="'Tapez...'"
-        ></app-form>
-        <app-form
-          [name]="'Poid autorisee'"
-          [placeholder]="'Tapez...'"
-        ></app-form>
-        <app-form [name]="'Dimension'" [placeholder]="'Tapez...'"></app-form>
-      </div>
-    </div>
-  </mat-dialog-content>
-  <mat-dialog-actions align="end">
-    <button mat-button mat-dialog-close>Cancel</button>
-    <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Ok</button>
-  </mat-dialog-actions>
+    </mat-dialog-content>
+    <mat-dialog-actions align="end">
+      <button mat-button mat-dialog-close>Cancel</button>
+      <button
+        mat-button
+        type="submit"
+        [mat-dialog-close]="true"
+        cdkFocusInitial
+      >
+        Ok
+      </button>
+    </mat-dialog-actions>
+  </form>
 </mat-dialog-content>
