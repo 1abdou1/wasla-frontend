@@ -1,3 +1,4 @@
+import { TravelService } from '../service/travel/travel.service';
 import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -17,12 +18,14 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { ModuleAlertComponent } from './module-alert/module-alert.component';
 import { MatListModule } from '@angular/material/list';
 import { MatMenuModule } from '@angular/material/menu';
+import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [
     FormComponent,
     DatePickerComponent,
     ModalComponent,
     ModuleAlertComponent,
+    HttpClientModule,
   ],
   imports: [
     CommonModule,
@@ -61,5 +64,6 @@ import { MatMenuModule } from '@angular/material/menu';
     MatMenuModule,
     RouterModule,
   ],
+  providers: [TravelService],
 })
 export class SharedModule {}
