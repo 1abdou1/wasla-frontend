@@ -25,7 +25,6 @@ import { HttpClientModule } from '@angular/common/http';
     DatePickerComponent,
     ModalComponent,
     ModuleAlertComponent,
-    HttpClientModule,
   ],
   imports: [
     CommonModule,
@@ -43,6 +42,7 @@ import { HttpClientModule } from '@angular/common/http';
     MatListModule,
     MatMenuModule,
     RouterModule,
+    HttpClientModule,
   ],
   exports: [
     MatToolbarModule,

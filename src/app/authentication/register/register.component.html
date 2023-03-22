@@ -1,0 +1,53 @@
+<div class="center-content">
+  <form [formGroup]="userForm" autocomplete="off" novalidate (ngSubmit)="register()" fxLayout="column wrap"
+      fxLayoutAlign="center center" fxLayoutGap="10px">
+  <mat-card class="example-card">
+    <mat-card-header>
+      <mat-card-title>Register</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <mat-tab-group>
+        <mat-tab label="Register">
+          <mat-form-field class="example-full-width">
+            <mat-label>Nom</mat-label>
+            <input type="text" matInput placeholder="Nom" formControlName="nom" id="nom">
+            <mat-error *ngIf="hasError('nom', 'required')">Veuillez saisir votre nom</mat-error>
+          </mat-form-field>
+          <mat-form-field class="example-full-width">
+            <mat-label >Prenom</mat-label>
+            <input type="text" matInput placeholder="Prenom" formControlName="prenom" id="prenom">
+            <mat-error *ngIf="hasError('prenom', 'required')">Veuillez saisir votre prenom</mat-error>
+          </mat-form-field>
+          <mat-form-field class="example-full-width">
+            <mat-label>Email</mat-label>
+            <input type="email" matInput placeholder="Email" formControlName="email" id="email">
+            <mat-error *ngIf="hasError('email', 'required')">Veuillez saisir votre email</mat-error>
+            <mat-error *ngIf="hasError('email', 'pattern')">Le format de votre email est invalid</mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="example-full-width">
+            <mat-label>Mot de passe</mat-label>
+            <input matInput [type]="hidePassword ? 'password' : 'text'" formControlName="password" id="password">
+            <mat-error *ngIf="hasError('password', 'required')">Veuillez saisir un mot de passe</mat-error>
+            <mat-error *ngIf="hasError('password', 'pattern')">Le mot de passe doit contenir des majuscules, miniscules, des chiffres
+              et la taille doit etre superieur à 8 </mat-error>
+            <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hidePassword">
+            <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+          </mat-form-field>
+          <mat-form-field class="example-full-width">
+            <mat-label>Confirmer votre mot de passe</mat-label>
+            <input matInput [type]="hideConfirmePassword ? 'rpassword' : 'text'" formControlName="confirmPassword" id="confirmPassword">
+            <mat-error *ngIf="hasError('confirmPassword', 'required')">Veuillez confirmer votre mot de passe</mat-error>
+            <mat-error *ngIf="passwordMatchError">Les mot de passe ne sont pas identiques</mat-error>
+            <button mat-icon-button matSuffix (click)="hideConfirmePassword = !hideConfirmePassword" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hideConfirmePassword">
+            <mat-icon>{{hideConfirmePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+          </mat-form-field>
+          <button mat-raised-button  color="primary" [disabled]="!userForm.valid">Inscriver</button>
+        </mat-tab>
+      </mat-tab-group>
+    </mat-card-content>
+  </mat-card>
+</form>
+</div>

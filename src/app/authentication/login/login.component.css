@@ -1,0 +1,31 @@
+/* You can add global styles to this file, and also import other style files */
+
+
+body {
+  height: 100%;
+}
+.example-card {
+  max-width: 400px;
+  margin-bottom: 20px;
+}
+.pointer{
+  cursor: pointer;
+}
+.center-content {
+    margin-top: 100px;
+    text-align: -webkit-center;
+}
+.example-full-width {
+    margin-top: 10px;
+  width: 100%;
+}
+.mat-button{
+    margin-top: 10px;
+  width: 100%;
+  color: white;
+  height: 40px;
+  background-color: #3F51B5;
+}
+.mat-card{
+  margin-bottom: -1.25em;
+}

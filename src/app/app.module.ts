@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { CalendarModule } from './calendar/calendar.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from './shared/shared.module';
+import { AuthenticationModule } from './authentication/authentication.module';
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -15,6 +16,7 @@ import { SharedModule } from './shared/shared.module';
     CalendarModule,
     SharedModule,
     BrowserAnimationsModule,
+    AuthenticationModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
