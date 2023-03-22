@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { TravelService } from 'src/app/service/travel/travel.service';
+import { NgxMaterialTimepickerToggleComponent } from 'ngx-material-timepicker/src/app/material-timepicker/components/timepicker-toggle-button/ngx-material-timepicker-toggle.component';
+
 
 @Component({
   selector: 'app-modal',
@@ -19,6 +21,8 @@ export class ModalComponent {
       arrivalAirport: [''],
       departureDate: [''],
       arrivalDate: [''],
+      departureTime: [''],
+      arrivalTime: [''],
     });
   }
   submitTravel() {

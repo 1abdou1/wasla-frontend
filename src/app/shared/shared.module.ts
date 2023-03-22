@@ -19,6 +19,7 @@ import { ModuleAlertComponent } from './module-alert/module-alert.component';
 import { MatListModule } from '@angular/material/list';
 import { MatMenuModule } from '@angular/material/menu';
 import { HttpClientModule } from '@angular/common/http';
+import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 @NgModule({
   declarations: [
     FormComponent,
@@ -43,6 +44,7 @@ import { HttpClientModule } from '@angular/common/http';
     MatMenuModule,
     RouterModule,
     HttpClientModule,
+    NgxMaterialTimepickerModule,
   ],
   exports: [
     MatToolbarModule,
@@ -63,6 +65,7 @@ import { HttpClientModule } from '@angular/common/http';
     MatListModule,
     MatMenuModule,
     RouterModule,
+    NgxMaterialTimepickerModule,
   ],
   providers: [TravelService],
 })
