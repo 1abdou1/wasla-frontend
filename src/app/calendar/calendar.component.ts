@@ -48,7 +48,9 @@ export class CalendarComponent implements OnInit {
   }
   getTravels() {
     this.travelService.get().subscribe({
-      next: (response) => (this.travels = response),
+      next: (response) => (
+        (this.travels = response), console.log('response', response)
+      ),
       error: (error) => console.log('error', error),
       complete: () => console.log('complete'),
     });
