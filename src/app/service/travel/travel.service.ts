@@ -12,4 +12,7 @@ export class TravelService {
   create(travel: TravelDto): Observable<TravelDto> {
     return this.http.post<TravelDto>('http://localhost:8098/voyages', travel);
   }
+  get(): Observable<TravelDto[]> {
+    return this.http.get<TravelDto[]>('http://localhost:8098/voyages');
+  }
 }

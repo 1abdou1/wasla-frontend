@@ -30,7 +30,7 @@
             </div>
           </div>
           <div class="row">
-            <div class="col-6">
+            <div class="col">
               <mat-form-field class="example-full-width">
                 <mat-label>Date de départ</mat-label>
                 <input
@@ -46,7 +46,7 @@
                 <mat-datepicker #picker_departure></mat-datepicker>
               </mat-form-field>
             </div>
-            <div class="col-6">
+            <div class="col">
               <mat-form-field class="example-full-width">
                 <mat-label> Date d'arrivée</mat-label>
                 <input
@@ -67,17 +67,39 @@
             <div class="col-6">
               <mat-form-field class="example-full-width">
                 <mat-label> Heure de départ</mat-label>
-                  <input matInput placeholder="Heure de départ"  [ngxTimepicker]="departureTime" [format]="24"  readonly />
-                  <ngx-material-timepicker-toggle matIconSuffix [for]="departureTime"></ngx-material-timepicker-toggle>
-                  <ngx-material-timepicker #departureTime></ngx-material-timepicker>
+                <input
+                  matInput
+                  placeholder="Heure de départ"
+                  formControlName="departureTime"
+                  [ngxTimepicker]="departureTime"
+                  [format]="24"
+                  readonly
+                />
+                <ngx-material-timepicker-toggle
+                  matIconSuffix
+                  [for]="departureTime"
+                ></ngx-material-timepicker-toggle>
+                <ngx-material-timepicker
+                  #departureTime
+                ></ngx-material-timepicker>
               </mat-form-field>
             </div>
             <div class="col-6">
               <mat-form-field class="example-full-width">
                 <mat-label> Heure d'arrivée</mat-label>
-                  <input matInput placeholder="Heure d'arrivée"  [ngxTimepicker]="arrivalTime" [format]="24"  readonly />
-                  <ngx-material-timepicker-toggle matIconSuffix [for]="arrivalTime"></ngx-material-timepicker-toggle>
-                  <ngx-material-timepicker #arrivalTime></ngx-material-timepicker>
+                <input
+                  matInput
+                  placeholder="Heure d'arrivée"
+                  formControlName="arrivalTime"
+                  [ngxTimepicker]="arrivalTime"
+                  [format]="24"
+                  readonly
+                />
+                <ngx-material-timepicker-toggle
+                  matIconSuffix
+                  [for]="arrivalTime"
+                ></ngx-material-timepicker-toggle>
+                <ngx-material-timepicker #arrivalTime></ngx-material-timepicker>
               </mat-form-field>
             </div>
           </div>
@@ -97,6 +119,3 @@
     </mat-dialog-actions>
   </form>
 </mat-dialog-content>
-
-
-
