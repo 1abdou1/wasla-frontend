@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import {AfterViewInit, ChangeDetectorRef, Component, OnInit, ViewChild} from '@angular/core';
 import { CalendarOptions, EventSourceInput } from '@fullcalendar/core'; // useful for typechecking
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
@@ -18,6 +18,7 @@ import { ModalComponent } from '../shared/modal/modal.component';
 import { ModuleAlertComponent } from '../shared/module-alert/module-alert.component';
 import { TravelService } from '../service/travel/travel.service';
 import { TravelDto } from '../dto/travel';
+import {FullCalendarComponent} from "@fullcalendar/angular";
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(
     control: FormControl | null,
@@ -37,9 +38,11 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
   templateUrl: './calendar.component.html',
   styleUrls: ['./calendar.component.css'],
 })
-export class CalendarComponent implements OnInit {
+export class CalendarComponent implements OnInit, AfterViewInit{
   format = 'dd/MM/yyyy';
   locale = 'en-Us';
+  @ViewChild('calendar') calendarComponent!: FullCalendarComponent;
+  calendarApi: any;
   constructor(
     public dialog: MatDialog,
     private travelService: TravelService,
@@ -54,6 +57,9 @@ export class CalendarComponent implements OnInit {
 
   ngOnInit(): void {
     this.getTravels();
+  }
+  ngAfterViewInit() {
+    this.calendarApi = this.calendarComponent.getApi();
   }
   getTravels() {
     this.travelService.get().subscribe({
@@ -121,7 +127,8 @@ export class CalendarComponent implements OnInit {
         },
       });
       dialogRef.afterClosed().subscribe((result) => {
-        console.log(`Dialog result: ${result}`);
+        travels: this.getTravels();
+        this.calendarApi.refetchEvents();
       });
     },
 
