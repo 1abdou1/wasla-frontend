@@ -18,7 +18,6 @@ import { ModalComponent } from '../shared/modal/modal.component';
 import { ModuleAlertComponent } from '../shared/module-alert/module-alert.component';
 import { TravelService } from '../service/travel/travel.service';
 import { TravelDto } from '../dto/travel';
-import { buildEventApis } from '@fullcalendar/core/internal';
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(
     control: FormControl | null,
@@ -46,6 +45,7 @@ export class CalendarComponent implements OnInit {
     private travelService: TravelService,
     private changeDetector: ChangeDetectorRef
   ) {}
+
   travels: TravelDto[] = [];
   emailFormControl = new FormControl('', [
     Validators.required,
@@ -65,7 +65,6 @@ export class CalendarComponent implements OnInit {
             date: voyage.departureDate,
           };
         });
-        console.log('response', response);
       },
       error: (error) => console.log('error', error),
       complete: () => console.log('complete'),
@@ -94,11 +93,9 @@ export class CalendarComponent implements OnInit {
     },
     headerToolbar: {
       left: 'title',
-
       right:
         'myCustomButton, dayGridMonth,timeGridWeek,timeGridDay,listWeek,prev,next', // user can switch between the two
     },
-
     eventDidMount: (info) => {
       console.log('infos', info.event);
       tippy(info.el, {
@@ -106,24 +103,23 @@ export class CalendarComponent implements OnInit {
           new Date(String(info.event._instance?.range.start)),
           this.format,
           this.locale
-        )} >  ${formatDate(
+        )} >> ${formatDate(
           new Date(String(info.event._instance?.range.end)),
           this.format,
           this.locale
-        )}`,
+        )} `,
         allowHTML: true,
       });
     },
-    
     eventClick: (info) => {},
     dateClick: (info) => {
       console.log(info.dateStr);
       const dialogRef = this.dialog.open(ModalComponent, {
         data: {
           date: info.dateStr,
+          travels: this.getTravels(),
         },
       });
-
       dialogRef.afterClosed().subscribe((result) => {
         console.log(`Dialog result: ${result}`);
       });

@@ -13,4 +13,7 @@
   </div>
 </div>
 
-<full-calendar [options]="calendarOptions" [deepChangeDetection]="true"></full-calendar>
+<full-calendar
+  [options]="calendarOptions"
+  [events]="calendarOptions.events"
+></full-calendar>
