@@ -117,7 +117,19 @@ export class CalendarComponent implements OnInit, AfterViewInit{
         allowHTML: true,
       });
     },
-    eventClick: (info) => {},
+    eventClick: (info) => {
+      console.log('info', info);
+      console.log(info);
+      // const dialogRef = this.dialog.open(ModalComponent, {
+      //   data: {
+      //     date: info,
+      //     travels: this.getTravels(),
+      //   },
+      // });
+      // dialogRef.afterClosed().subscribe((result) => {
+      //   console.log(`Dialog result: ${result}`);
+      // });
+    },
     dateClick: (info) => {
       console.log(info.dateStr);
       const dialogRef = this.dialog.open(ModalComponent, {
