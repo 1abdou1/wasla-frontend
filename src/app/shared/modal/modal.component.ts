@@ -8,6 +8,7 @@ export interface DialogData {
   date: '';
   travels: TravelDto[];
   events: any;
+  info?: any;
 }
 
 @Component({
@@ -23,22 +24,36 @@ export class ModalComponent {
     private _formBuilder: FormBuilder,
     private travelService: TravelService
   ) {
+    let departure = '';
+    let arrival = '';
+    if (this.data.info) {
+      const result = this.data.info?.event?._def.title;
+      const _result = result.split(' ');
+      departure = _result[0];
+      arrival = _result[2];
+    }
+
     this.travelForm = this._formBuilder.group({
-      departureAirport: [''],
-      arrivalAirport: [''],
-      departureDate: [new Date(data.date)],
-      arrivalDate: [new Date(data.date)],
+      departureAirport: [this.data.info ? departure : ''],
+      arrivalAirport: [this.data.info ? arrival : ''],
+      departureDate: [
+        this.data.info
+          ? this.data.info?.event._instance.range.start
+          : new Date(data.date),
+      ],
+      arrivalDate: [
+        this.data.info
+          ? this.data.info?.event._instance.range.end
+          : new Date(data.date),
+      ],
       departureTime: [''],
       arrivalTime: [''],
     });
   }
-  submitTravel() {
-    this.travelForm.value.departureTime = `${this.travelForm.value.departureTime}:00`;
-    this.travelForm.value.arrivalTime = `${this.travelForm.value.arrivalTime}:00`;
-    this.travelService.create(this.travelForm.value).subscribe({
+  createTravel(travel: TravelDto) {
+    this.travelService.create(travel).subscribe({
       next: (response) => {
         this.data.travels.push(response) as unknown as TravelDto[];
-        console.log('result', this.data.travels);
         this.data.events = this.data.travels.map((voyage: any) => {
           return {
             title: voyage.departureAirport + ' > ' + voyage.arrivalAirport,
@@ -46,10 +61,38 @@ export class ModalComponent {
           };
         });
         window.location.reload();
-        console.log('this.data.travels', this.data.travels);
       },
       error: (error) => console.log('error', error),
       complete: () => console.log('complete'),
     });
+  }
+  updateTravel(id: string, travel: TravelDto) {
+    console.log('travel', travel);
+    this.travelService.update(id, travel).subscribe({
+      next: (response) => {
+        this.data.travels.push(response) as unknown as TravelDto[];
+        console.log('update', response);
+        this.data.events = this.data.travels.map((voyage: any) => {
+          return {
+            title: voyage.departureAirport + ' > ' + voyage.arrivalAirport,
+            date: voyage.departureDate,
+          };
+        });
+        window.location.reload();
+      },
+      error: (error) => console.log('error', error),
+      complete: () => console.log('complete'),
+    });
+  }
+  submitTravel() {
+    console.log('this.data.info++++++++', this.data.info);
+    this.travelForm.value.departureTime = `${this.travelForm.value.departureTime}:00`;
+    this.travelForm.value.arrivalTime = `${this.travelForm.value.arrivalTime}:00`;
+    this.data.info
+      ? this.updateTravel(
+          this.data.info.event._def.sourceId,
+          this.travelForm.value
+        )
+      : this.createTravel(this.travelForm.value);
   }
 }

@@ -15,4 +15,10 @@ export class TravelService {
   get(): Observable<TravelDto[]> {
     return this.http.get<TravelDto[]>('http://localhost:8098/voyages');
   }
+  update(id: string, travel: TravelDto): Observable<TravelDto> {
+    return this.http.put<TravelDto>(
+      `http://localhost:8098/voyages/${id}`,
+      travel
+    );
+  }
 }
